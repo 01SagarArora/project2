@@ -1,5 +1,4 @@
-import { GET_JELLY_BEAN } from '../utils/ApiConstants';
-
+import { GET_JELLY_BEAN } from './../utils/ApiConstants';
 import { commonApi } from './../api/apis';
 import { setJellyBeanData } from './../slices/jellyBeanMainDataSlice'
 import { Dispatch, AnyAction } from 'redux';

@@ -5,7 +5,7 @@ import { RootState } from './app/store';
 import { setCurrentPage } from './slices/paginationSlice';
 import Pagination from './features/pagination/Pagination';
 import JellyBeanList from './components/JellyBeanList';
-import { fetchJellyBeanRequest } from './api/services/jellyBeanListRequest';
+import { fetchJellyBeanRequest } from './services/jellyBeanListRequest';
 import { initStore } from './app/store'
 
 const App: React.FC = () => {
