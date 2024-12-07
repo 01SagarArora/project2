@@ -10,8 +10,6 @@ const jellyBeanMainDataSlice = createSlice({
     reducers: {
         setJellyBeanData: (state = initialState, action: { type: any, payload: any }) => {        
             state.myData = action.payload;
-            console.log("Updated",state.myData)
-
         }
     },
 });

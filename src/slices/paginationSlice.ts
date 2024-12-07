@@ -8,8 +8,8 @@ interface PaginationState {
 
 const initialState: PaginationState = {
   currentPage: 1,
-  itemsPerPage: 3,
-  totalItems: 10,  
+  itemsPerPage: 1,
+  totalItems: 1,  
 };
 
 const paginationSlice = createSlice({
