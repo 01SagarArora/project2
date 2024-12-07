@@ -5,6 +5,7 @@ interface JellyBeanListProps {
 }
 
 const jellyBeanList: React.FC<JellyBeanListProps> = ({ items }) => {
+
   return (    
       <ul className="jelly-bean-list">
         {

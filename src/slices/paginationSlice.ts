@@ -8,7 +8,7 @@ interface PaginationState {
 
 const initialState: PaginationState = {
   currentPage: 1,
-  itemsPerPage: 1,
+  itemsPerPage: 3,
   totalItems: 1,  
 };
 

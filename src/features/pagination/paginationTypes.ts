@@ -1,7 +1,5 @@
-// src/features/pagination/paginationTypes.ts
 export interface PaginationProps {
-    currentPage: number;
-    totalPages: number;
-    onPageChange: (page: number) => void;
-  }
-  
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
