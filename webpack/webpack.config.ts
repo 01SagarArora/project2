@@ -2,7 +2,8 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { plugins } from './webpack.client';
 
-// Shared configuration
+export const configs: any[] = []
+// Shared configuration test
 const commonConfig = {
   resolve: {
     extensions: ['.ts', '.js', '.jsx', '.tsx'],
@@ -20,7 +21,6 @@ const commonConfig = {
       },
     ],
   },
-  mode: 'development', // Set the mode to development (can also be 'production')
 };
 
 // Client-side configuration
@@ -55,4 +55,18 @@ const serverConfig = {
   },
 };
 
-export default [clientConfig, serverConfig];
+
+const IS_DEV = false;
+
+if (process.env.NO_SSR === 'true') {
+  configs.push(clientConfig);
+} else {
+  configs.push(serverConfig);
+
+  if (!IS_DEV) {
+    configs.push(clientConfig);
+  }
+}
+
+
+export default configs;
