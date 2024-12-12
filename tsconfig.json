@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    // "module": "esnext",
-    "module": "CommonJS",
+    "module": "esnext"                             ,
+    // "module": "CommonJS",
     // "target": "es2021",
     // "target": "ES6",
     "target": "esnext",
@@ -21,10 +21,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
-    "jsx": "preserve"
+    "jsx": "react-jsx"
   },
   "include": [
-    // "src",
+    "webpack/**/*.ts",
     "src/**/*"
   ],
   "exclude": [
