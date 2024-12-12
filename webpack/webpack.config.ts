@@ -2,6 +2,10 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { plugins } from './webpack.client';
 
+// const configs: any[] = []
+
+// export default configs;
+
 export const configs: any[] = []
 // Shared configuration test
 const commonConfig = {
@@ -67,6 +71,5 @@ if (process.env.NO_SSR === 'true') {
     configs.push(clientConfig);
   }
 }
-
 
 export default configs;
