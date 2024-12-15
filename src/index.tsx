@@ -6,30 +6,25 @@ import { initStore } from './app/store';
 import App from './App';
 import './index.css';
 
+const isServer = false;
+
+const store = initStore(!isServer && window.__PRELOADED_STATE__ && window.__PRELOADED_STATE__);
+
+// const store = initStore();
 
 
-console.log('Starting hydration...');
+const container = document.getElementById('root');
 
-if (typeof window !== 'undefined') {
-
-  // const store = initStore(window.__PRELOADED_STATE__ && window.__PRELOADED_STATE__);
-  const store = initStore();
-
-
-  const container = document.getElementById('root');
-
-  console.log(container); // Should log the `div#root` element
-  if (!container) {
-    throw new Error('Root container not found');
-  }
-
-  hydrateRoot(
-    container!,
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>
-  );
+console.log(container); // Should log the `div#root` element
+if (!container) {
+  throw new Error('Root container not found');
 }
 
+hydrateRoot(
+  container!,
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);

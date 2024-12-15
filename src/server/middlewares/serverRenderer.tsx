@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ROUTE_CONSTANTS } from '../../constants/routeConstants';
 import * as HelmetAsync from 'react-helmet-async';
+import serialize from 'serialize-javascript';
+
 
 // import HelmetAsync from 'react-helmet-async';
 const { HelmetProvider } = HelmetAsync;
@@ -40,14 +42,12 @@ const serverRenderer = (chunkExtractor: ChunkExtractor):
         await fetchJellyBeanS2SRequest(store);
         preloadedState = { ...store.getState() };
 
-
         const helmetContext = {};
 
         const jsx = (
             <Provider store={store}>
                 <App />
             </Provider>
-
         );
 
         // Render the app to a string
@@ -63,7 +63,7 @@ const serverRenderer = (chunkExtractor: ChunkExtractor):
                             </head>
                             <body>
                                 <div id="root">${reactHtml}</div>
-                               
+                                <script ">window.__PRELOADED_STATE__ = ${serialize(preloadedState)}</script>
                                 <script src="/client/client.cjs"></script>
 
                             </body>
