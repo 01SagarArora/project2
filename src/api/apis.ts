@@ -38,3 +38,35 @@ export const commonApi = createApiFunction({
     })
   })
 })
+
+//GET Api S2S
+export const commonS2SApi = createApiFunction({
+  reducerPath: 'commonS2SApi',
+    baseQuery : fetchBaseQuery({
+    baseUrl: BASE_URL,
+  }),
+  endpoints: builder => ({
+    getApi: builder.query<any, any>({
+      query:({cookie,url})=> ( {
+       url,
+       headers: {
+        'content-type': 'application/json;charset=UTF-8',
+        'cookie': cookie,
+       },
+       responseHandler: (response: { text: () => any }) => response.text()
+      }),
+    }),
+    postApi: builder.query<any, any>({
+      query:({cookie,url,data})=> ( {
+       url,
+       method: 'POST',
+       headers: {
+        'content-type': 'text/plain',
+        'cookie':cookie,
+       },
+       body:data,
+       responseHandler: (response: { text: () => any }) => response.text()
+      }),
+    }),
+})
+})

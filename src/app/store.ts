@@ -1,17 +1,17 @@
 // src/app/store.ts
 import { configureStore, StateFromReducersMapObject } from '@reduxjs/toolkit';
-import { commonApi } from '../api/apis';
+import { commonApi, commonS2SApi } from '../api/apis';
 import thunk from 'redux-thunk';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { rootReducer } from './rootReducer';
 
-
-export const initStore = () => configureStore({
+export const initStore = (preloadedState?: Partial<RootState>) => configureStore({
   reducer: rootReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(thunk,commonApi.middleware),
+    }).concat(thunk, commonApi.middleware, commonS2SApi.middleware),
+    devTools: String(process.env.NODE_ENV).trim() !== 'production',
 });
 
 export type Store = ReturnType<typeof initStore>;

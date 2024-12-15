@@ -6,31 +6,35 @@ import { setCurrentPage } from './slices/paginationSlice';
 import Pagination from './features/pagination/Pagination';
 import JellyBeanList from './components/JellyBeanList';
 import { fetchJellyBeanRequest } from './services/jellyBeanListRequest';
-import { initStore } from './app/store'
+import { initStore } from "./app/store";
 
 const App: React.FC = () => {
-  const store = useMemo(() => {
-    return initStore();
-  }, []);
+
+
+  // const store = useMemo(() => {
+  //   return initStore();
+  // }, []);
 
   const dispatch = useDispatch();
   const { currentPage, itemsPerPage } = useSelector(
     (state: RootState) => state.pagination
   );
-  const { myData } = useSelector(
+
+
+  const { myData=[] } = useSelector(
     (state: RootState) => state.jellyBeanData
   );
 
-  useEffect(() => {
-    const fetchData = () => {
-      try {
-        fetchJellyBeanRequest(dispatch, store);
-      } catch (err: any) {
-        console.log('error')
-      }
-    };
-    fetchData();
-  }, [dispatch, store]);
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     try {
+  //       fetchJellyBeanRequest(dispatch, store);
+  //     } catch (err: any) {
+  //       console.log('error')
+  //     }
+  //   };
+  //   fetchData();
+  // }, [dispatch, store]);
 
   const handlePageChange = (page: number) => {
     dispatch(setCurrentPage(page));

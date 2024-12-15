@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
     "module": "esnext"                             ,
-    // "module": "CommonJS",
-    // "target": "es2021",
-    // "target": "ES6",
     "target": "esnext",
     "strict": true,
     "esModuleInterop": true,
@@ -13,18 +10,21 @@
       "esnext"
     ],
     "allowJs": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,    
     "outDir": "./dist",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
     "jsx": "react-jsx"
   },
+  "paths": {
+    "@middlewares/*": ["src/server/middlewares/*"]
+  },
   "include": [
-    "webpack/**/*.ts",
+    "webpack/*.ts",
     "src/**/*"
   ],
   "exclude": [

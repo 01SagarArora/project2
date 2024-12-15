@@ -50,9 +50,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-server": "npx webpack --config ./webpack.config.ts --node-env development",
-    "build-2": "NODE_OPTIONS='--loader ts-node/esm' npx webpack --config webpack/webpack.config.ts --env development",
+    "build-2": "rm -rf dist && NODE_OPTIONS='--experimental-modules --loader ts-node/esm' npx webpack --config webpack/webpack.config.ts --env development",
     "build-3": "tsc",
-    "server": "node dist/server/server.js"
+    "server": "node dist/server/server.cjs"
   },
   "eslintConfig": {
     "extends": [

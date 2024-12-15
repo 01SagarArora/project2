@@ -1,17 +1,29 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { hydrateRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { initStore} from './app/store';
+
+import { initStore } from './app/store';
 import App from './App';
 import './index.css';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-const store = initStore()
-root.render(
+
+console.log('Starting hydration...');
+
+const store = initStore();
+const container = document.getElementById('root');
+
+console.log(container); // Should log the `div#root` element
+if (!container) {
+    throw new Error('Root container not found');
+}
+
+hydrateRoot(
+  container!,
   <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>
 );
+

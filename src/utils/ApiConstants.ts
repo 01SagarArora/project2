@@ -1,4 +1,4 @@
-export const DEV_BASE_URL = 'http://localhost:3000';
+export const DEV_BASE_URL = 'http://localhost:8000';
 
 export const PROD_BASE_URL = 'https://secure.yatra.com';
 

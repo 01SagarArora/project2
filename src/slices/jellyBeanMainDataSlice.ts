@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     myData: [],
     status: 'idle',
-    error: null,
+    error: false,
 };
 
 const jellyBeanMainDataSlice = createSlice({
@@ -11,6 +11,7 @@ const jellyBeanMainDataSlice = createSlice({
     initialState,
     reducers: {
         setJellyBeanData: (state = initialState, action: { type: any, payload: any }) => {        
+            console.log("payload",action.payload)
             state.myData = action.payload;
         }
     }

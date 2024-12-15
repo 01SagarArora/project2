@@ -1,4 +1,4 @@
-
+import path from 'path';
 
 import { Configuration, HotModuleReplacementPlugin, WebpackPluginInstance, DefinePlugin } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -41,3 +41,22 @@ export const plugins: WebpackPluginInstance[] = [
         new CssoWebpackPlugin(),
     ]),
 ];
+
+// Client-side configuration
+export const clientConfig = {
+    ...commonConfig,
+    entry: './src/index.tsx', // Client entry point
+    output: {
+      filename: 'client.cjs',
+      path: path.resolve(__dirname, '../dist/client'),
+    },
+    mode: 'development', // Development mode disables minification by default
+    optimization: {
+      usedExports: false,
+      minimize: false, // Disable minification
+    },
+    plugins,
+    target: 'web', // For browser environment
+  };
+
+  export default clientConfig;
