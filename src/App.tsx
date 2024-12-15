@@ -15,6 +15,9 @@ const App: React.FC = () => {
   //   return initStore();
   // }, []);
 
+  const store = initStore(window.__PRELOADED_STATE__ && window.__PRELOADED_STATE__);
+
+
   const dispatch = useDispatch();
   const { currentPage, itemsPerPage } = useSelector(
     (state: RootState) => state.pagination

@@ -10,20 +10,26 @@ import './index.css';
 
 console.log('Starting hydration...');
 
-const store = initStore();
-const container = document.getElementById('root');
+if (typeof window !== 'undefined') {
 
-console.log(container); // Should log the `div#root` element
-if (!container) {
+  // const store = initStore(window.__PRELOADED_STATE__ && window.__PRELOADED_STATE__);
+  const store = initStore();
+
+
+  const container = document.getElementById('root');
+
+  console.log(container); // Should log the `div#root` element
+  if (!container) {
     throw new Error('Root container not found');
-}
+  }
 
-hydrateRoot(
-  container!,
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
-);
+  hydrateRoot(
+    container!,
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
+  );
+}
 

@@ -11,6 +11,7 @@ export const initStore = (preloadedState?: Partial<RootState>) => configureStore
     getDefaultMiddleware({
       serializableCheck: false,
     }).concat(thunk, commonApi.middleware, commonS2SApi.middleware),
+    preloadedState,
     devTools: String(process.env.NODE_ENV).trim() !== 'production',
 });
 

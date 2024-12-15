@@ -32,22 +32,20 @@ const serverRenderer = (chunkExtractor: ChunkExtractor):
 
         const location: string = req.url;
         // console.log(req.url, req);
-        // let preloadedState: Partial<RootState> = {};  // Initialize preloaded state
-        const store = initStore();
+        let preloadedState: Partial<RootState> = {};  // Initialize preloaded state
+        const store = initStore(preloadedState);
 
         console.log("Fetching data for SagarUsername...");
 
         await fetchJellyBeanS2SRequest(store);
+        preloadedState = { ...store.getState() };
+
 
         const helmetContext = {};
 
         const jsx = (
             <Provider store={store}>
-                <HelmetProvider context={helmetContext}>
-                    <StaticRouter location={location}>
-                        <App />
-                    </StaticRouter>
-                </HelmetProvider>
+                <App />
             </Provider>
 
         );
@@ -55,7 +53,7 @@ const serverRenderer = (chunkExtractor: ChunkExtractor):
         // Render the app to a string
         const reactHtml = renderToString(jsx);
 
-        const html =    `
+        const html = `
                             <!DOCTYPE html>
                             <html lang="en">
                             <head>
@@ -65,16 +63,19 @@ const serverRenderer = (chunkExtractor: ChunkExtractor):
                             </head>
                             <body>
                                 <div id="root">${reactHtml}</div>
-                                <script src="/bundle.js"></script>
+                               
+                                <script src="/client/client.cjs"></script>
+
                             </body>
                             </html>
                         `;
+
+        res.status(200).send(html);
 
 
         // const fullHtml = renderFullPage(reactHtml, store.getState());
 
 
-        res.status(200).send(html);
     };
 
 export { serverRenderer };
