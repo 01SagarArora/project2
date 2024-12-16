@@ -16,13 +16,9 @@ import { WebpackPluginInstance } from 'webpack';
 // Other imports (e.g., from `webpack`)
 import pkg from 'webpack';
 
-
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const { HotModuleReplacementPlugin, DefinePlugin } = pkg;
-
-
 
 const IS_DEV = false;
 const STATIC_CONTENT_PATH = 'pagination';

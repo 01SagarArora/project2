@@ -33,7 +33,6 @@ const serverRenderer = (chunkExtractor: ChunkExtractor):
         res.type('html');
 
         const location: string = req.url;
-        // console.log(req.url, req);
         let preloadedState: Partial<RootState> = {};  // Initialize preloaded state
         const store = initStore(preloadedState);
 
@@ -46,7 +45,11 @@ const serverRenderer = (chunkExtractor: ChunkExtractor):
 
         const jsx = (
             <Provider store={store}>
-                <App />
+                <HelmetProvider context={helmetContext}>
+                    <StaticRouter location={location}>
+                        <App />
+                    </StaticRouter>
+                </HelmetProvider>
             </Provider>
         );
 
@@ -54,27 +57,22 @@ const serverRenderer = (chunkExtractor: ChunkExtractor):
         const reactHtml = renderToString(jsx);
 
         const html = `
-                            <!DOCTYPE html>
-                            <html lang="en">
-                            <head>
-                                <meta charset="UTF-8" />
-                                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                                <title>SSR with Hydration</title>
-                            </head>
-                            <body>
-                                <div id="root">${reactHtml}</div>
-                                <script ">window.__PRELOADED_STATE__ = ${serialize(preloadedState)}</script>
-                                <script src="/client/client.cjs"></script>
-
-                            </body>
-                            </html>
-                        `;
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                            <title>SSR with Hydration</title>
+                        </head>
+                        <body>
+                            <div id="root">${reactHtml}</div>
+                            <script ">window.__PRELOADED_STATE__ = ${serialize(preloadedState)}</script>
+                            <script src="/client/client.cjs"></script>
+                        </body>
+                        </html>
+                    `;
 
         res.status(200).send(html);
-
-
-        // const fullHtml = renderFullPage(reactHtml, store.getState());
-
 
     };
 
