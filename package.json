@@ -1,7 +1,7 @@
 {
   "name": "react-pagination",
   "version": "0.1.0",
-  "type":"module",
+  "type": "module",
   "dependencies": {
     "@loadable/server": "^5.15.3",
     "@reduxjs/toolkit": "^1.9.7",
@@ -47,14 +47,9 @@
     "webpack-node-externals": "^3.0.0"
   },
   "scripts": {
-    "start-2": "react-scripts start",
-    "build-2": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "npx webpack --config ./webpack/webpack.config.ts --node-env development",
     "build": "rm -rf dist && NODE_OPTIONS='--experimental-modules --loader ts-node/esm' npx webpack --config webpack/webpack.config.ts --env development",
-    "build-3": "tsc",
-    "start": "json-server --watch src/mockData/mockData.json && node dist/server/server.cjs"
+    "start": "node dist/server/server.cjs",
+    "mock": "json-server src/mockData/mockData.json --port 8000"
   },
   "eslintConfig": {
     "extends": [
