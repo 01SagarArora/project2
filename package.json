@@ -47,14 +47,14 @@
     "webpack-node-externals": "^3.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start-2": "react-scripts start",
+    "build-2": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-server": "npx webpack --config ./webpack.config.ts --node-env development",
-    "build-2": "rm -rf dist && NODE_OPTIONS='--experimental-modules --loader ts-node/esm' npx webpack --config webpack/webpack.config.ts --env development",
+    "server": "npx webpack --config ./webpack/webpack.config.ts --node-env development",
+    "build": "rm -rf dist && NODE_OPTIONS='--experimental-modules --loader ts-node/esm' npx webpack --config webpack/webpack.config.ts --env development",
     "build-3": "tsc",
-    "server": "node dist/server/server.cjs"
+    "start": "json-server --watch src/mockData/mockData.json && node dist/server/server.cjs"
   },
   "eslintConfig": {
     "extends": [

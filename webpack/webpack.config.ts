@@ -8,7 +8,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 // Type definitions
 import { WebpackPluginInstance } from 'webpack';
@@ -43,7 +42,6 @@ const plugins: WebpackPluginInstance[] = [
     }) as { apply(): void; },
   ...(IS_DEV ? [
     new HotModuleReplacementPlugin(),
-    new ReactRefreshWebpackPlugin(),
   ] : [
   ]),
 ];
